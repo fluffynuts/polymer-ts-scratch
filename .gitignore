@@ -37,9 +37,15 @@ bower_components
 # Optional REPL history
 .node_repl_history
 
+# build artifacts
+app/**/*.js
+dist
+app/**/*.js.map
+
 # editor poopies
 .vs
 .vscode
 .swp
 .swo
 *.*~
+.yarnrc
