@@ -2,5 +2,5 @@ var gulp = require('gulp'),
     del = require('del');
 
 gulp.task('clean', function() {
-  return del(['src/**/*.js']);
+  return del(['app/**/*.js', 'specs/**/*.spec.js']);
 });

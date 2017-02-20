@@ -1,17 +1,25 @@
 var gulp = require('gulp'),
-    karma = require('karma').Server,
-    runSequence = require('run-sequence'),
-    path = require('path');
+  Server = require('karma').Server,
+  runSequence = require('run-sequence'),
+  path = require('path');
 
-gulp.task('test', function() {
-  Karma({
+function startKarma(singleRun) {
+  new Server({
     configFile: path.join(__dirname, '..', 'karma.conf.js'),
-    singleRun: true
+    singleRun: singleRun
   }).start();
+}
+
+gulp.task('test', ['clean-tsc'], function () {
+  startKarma(true);
+});
+
+gulp.task('watch', ['clean-tsc'], function () {
+  startKarma(false);
   gulp.watch([
     'app/**/*.ts',
     'specs/**/*.ts'
-  ], function() {
-    runSequence(['tsc', 'tsc-specs']);
+  ], function () {
+    runSequence(['tsc']);
   });
 });

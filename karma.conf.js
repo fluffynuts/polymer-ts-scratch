@@ -15,15 +15,18 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'app/**/*.html', include: false, serve: true },
-      { pattern: 'app/**/*.js', include: false, serve: true },
-      { pattern: 'specs/**/*.js', include: true, serve: true },
-      { pattern: 'bower_components/polymer/**/*', include: false, serve: true },
-      { pattern: 'bower_components/polymer-ts/**/*', include: false, serve: true },
-      { pattern: 'specs/**/*.js', include: true, serve: true }
+      { pattern: 'app/**/*.html', included: false, served: true },
+      { pattern: 'app/**/*.js', included: false, served: true },
+      { pattern: 'bower_components/polymer/**/*', included: false, served: true },
+      { pattern: 'bower_components/polymer-ts/**/*', included: false, served: true },
+      { pattern: 'specs/tools/**/*.js', included: true, served: true },
+      { pattern: 'specs/**/*.spec.js', included: true, served: true }
     ],
 
-
+    plugins: [
+        'karma-jasmine',
+        'karma-chrome-launcher'
+    ],
     // list of files to exclude
     exclude: [
     ],
@@ -54,7 +57,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
