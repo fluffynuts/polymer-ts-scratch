@@ -1,9 +1,11 @@
 describe('sts-entry', () => {
     let toRemove = [];
     afterEach(() => {
-        // toRemove.forEach(el => {
-        //     el.parentElement.removeChild(el);
-        // });
+        var workOn = toRemove;
+        toRemove = [];
+        workOn.forEach(el => {
+            el.parentElement.removeChild(el);
+        });
     });
     function create(): StsEntry {
         var container = document.createElement('div');
@@ -14,6 +16,7 @@ describe('sts-entry', () => {
         return sut as StsEntry;
     };
     it('should be a polymer animal', () => {
+        debugger;
         var sut = create();
         expect(sut).toBeDefined();
         expect(sut.$).toBeDefined();
@@ -21,6 +24,6 @@ describe('sts-entry', () => {
     it('should have a _onKeyPress function', () => {
         var sut = create();
         expect(sut._onKeyPress).toBeDefined();
-        expect(typeof(sut._onKeyPress)).toBe('function');   // TODO: pull out .toBeAFunction() matcher
+        expect(typeof (sut._onKeyPress)).toBe('function');   // TODO: pull out .toBeAFunction() matcher
     });
 });

@@ -15,9 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'build/**/*.*', included: false, served: true, watched: true },
       { pattern: 'build/scripts/**/*.js', included: true, served: true, watched: true },
       { pattern: 'build/specs/tools/**/*.js', included: true, served: true, watched: true },
+      { pattern: 'build/**/*.*', included: false, served: true, watched: true },
       { pattern: 'build/specs/**/*.spec.js', included: true, served: true, watched: true }
     ],
 
@@ -61,8 +61,19 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-    // browsers: ['PhantomJS'],
+    // browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
+
+    customLaunchers: {
+      HeadlessChrome: {
+        base: 'Chrome',
+        flags: [ '--headless', '--disable-gpu', '--remote-debugging-port=9222' ]
+      },
+      PhantomJsWithDebugging: {
+        base: 'PhantomJS',
+        flags: [ '--remote-debugger-port=9000' ]
+      }
+    },
 
 
     // Continuous Integration mode

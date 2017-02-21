@@ -11,6 +11,10 @@ function startKarma(singleRun) {
   }).start();
 }
 
+gulp.task('quick-test', function() {
+  startKarma(true);
+});
+
 gulp.task('test', ['clean-build'], function () {
   startKarma(true);
 });
