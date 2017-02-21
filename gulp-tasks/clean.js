@@ -1,6 +1,10 @@
 var gulp = require('gulp'),
-    del = require('del');
+    del = require('del'),
+    path = require('path'),
+    config = require('./config');
 
 gulp.task('clean', function() {
-  return del(['app/**/*.js', 'specs/**/*.spec.js']);
+  return del([
+    path.join(config.buildDir, '**', '*'),
+    path.join(config.distDir, '**', '*')]);
 });

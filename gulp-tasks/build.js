@@ -6,46 +6,66 @@ var
   polyGulpCopy = require('./modules/poly-gulp-copy'),
   path = require('path'),
   runSequence = require('run-sequence'),
-  buildRoot = 'dist'; // deviates from MGS default
+  config = require('./config'),
+  buildDir = config.buildDir,
+  distDir = config.distDir,
+  srcDir = config.srcDir,
+  merge = require('merge-stream');
 
-function doBuild (input, output) {
-    var isProduction = environment === 'production';
-    return gulp.src(input)
-      .pipe(polyGulpBuild({ maximumCrush: isProduction }))
-      .pipe(gulp.dest(output));
-}
 
-gulp.task('dist-scripts', [ 'import-webcomponentsjs'], function() {
-    return gulp.src(['./scripts/**/*'])
-            .pipe(gulp.dest(buildRoot + '/scripts'));
+gulp.task('build:copy-scripts', [ 'import-webcomponentsjs' ], function() {
+    return gulp.src([path.join(srcDir, 'scripts/**/*')])
+            .pipe(gulp.dest(path.join(buildDir, 'scripts')));
 });
 
-gulp.task('dist-translations', function() {
-    return gulp.src(['./translations/**/*'])
-              .pipe(gulp.dest(buildRoot +'/translations'));
+gulp.task('build:copy-translations', function() {
+    return gulp.src([path.join(srcDir, 'translations/**/*')])
+              .pipe(gulp.dest(path.join(buildDir, 'translations')));
 });
 
-gulp.task('dist-root-html', function() {
-  return gulp.src(['./*.html'])
-          .pipe(gulp.dest(buildRoot));
+gulp.task('build:copy-images', function() {
+    gulp.src([path.join(srcDir, '**/*.png'), '!bower_components/**/*'])
+        .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('dist-images', function() {
-    gulp.src(['./**/*.png'])
-        .pipe(gulp.dest(buildRoot));
+gulp.task('build:copy-html', function() {
+  return gulp.src([path.join(srcDir, '**/*.html'), '!bower_components/**/*'])
+          .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('dist-static-content', function(done) {
+gulp.task('build:copy-css', function() {
+  return gulp.src([path.join(srcDir, '**/*.css'), '!bower_components/**/*'])
+          .pipe(gulp.dest(buildDir));
+});
+
+gulp.task('build:copy-bower_components', function() {
+    gulp.src([path.join(srcDir, 'bower_components/**/*')])
+        .pipe(gulp.dest(path.join(buildDir, 'bower_components')));
+});
+
+gulp.task('build:copy', function() {
   runSequence([
-    'dist-scripts', 
-    'dist-translations', 
-    'dist-root-html', 
-    'dist-images'],
-  done);
+    'build:copy-scripts',
+    'build:copy-translations',
+    'build:copy-html',
+    'build:copy-css',
+    'build:copy-images',
+    'build:copy-bower_components',
+  ]);
 });
 
-gulp.task('build', ['dist-static-content'], function() {
-  return doBuild('app/elements.html', path.join(buildRoot, 'app'))
+gulp.task('build', function(done) {
+  runSequence([
+    'build:copy',
+    'tsc'
+  ], done);
+});
+
+gulp.task('dist', ['build'], function() {
+  var isProduction = environment === 'production';
+  return gulp.src(path.join(buildDir, 'app', 'elements.html'))
+          .pipe(polyGulpBuild({ maximumCrush: isProduction }))
+          .pipe(gulp.dest(distDir));
 });
 
 

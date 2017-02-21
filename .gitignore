@@ -38,9 +38,8 @@ bower_components
 .node_repl_history
 
 # build artifacts
-app/**/*.js
 dist
-app/**/*.js.map
+build
 
 # editor poopies
 .vs

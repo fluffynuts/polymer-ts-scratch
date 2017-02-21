@@ -1,20 +1,33 @@
 var gulp = require('gulp'),
   browserSync = require('browser-sync'),
+  path = require('path'),
   reload = browserSync.reload,
+  config = require('./config'),
   typescript = require('gulp-typescript');
 
-gulp.task('serve', ['clean-tsc'], function () {
+function inSrc(glob) {
+  return path.join(config.srcDir, glob);
+}
+
+gulp.task('serve', ['build'], function () {
   browserSync({
     open: false,
     notify: false,
     server: {
-      baseDir: './'
+      baseDir: path.join('.', config.buildDir)
     }
   });
+
+  gulp.watch([inSrc('**/*.ts')], ['tsc']);
+
+  gulp.watch([inSrc('scripts/**/*')], ['build:copy-scripts']);
+  gulp.watch([inSrc('translations/**/*')], ['build:copy-translations']);
+  gulp.watch([inSrc('**/*.html')], ['build:copy-html']);
+  gulp.watch([inSrc('**/*.css')], ['build:copy-css']);
+  gulp.watch([inSrc('**/*.png')], ['build:copy-images']);
+  gulp.watch([inSrc('bower_components/**/*')], ['build:copy-bower_components']);
+  
   gulp.watch([
-    'src/**/*.html',
-    'src/**/*.js',
-    'src/**/*.css'
+    path.join(config.buildDir, '**', '*')
   ], reload);
-  gulp.watch('src/**/*.ts', ['tsc']);
 });
