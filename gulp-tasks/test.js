@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
   Server = require('karma').Server,
   runSequence = require('run-sequence'),
+  autoRebuild = require('./modules/auto-rebuild-and-notify'),
   path = require('path');
 
 function startKarma(singleRun) {
@@ -10,16 +11,11 @@ function startKarma(singleRun) {
   }).start();
 }
 
-gulp.task('test', ['clean-tsc'], function () {
+gulp.task('test', ['clean-build'], function () {
   startKarma(true);
 });
 
-gulp.task('watch', ['clean-tsc'], function () {
+gulp.task('watch', ['clean-build'], function () {
   startKarma(false);
-  gulp.watch([
-    'app/**/*.ts',
-    'specs/**/*.ts'
-  ], function () {
-    runSequence(['tsc']);
-  });
+  autoRebuild();
 });

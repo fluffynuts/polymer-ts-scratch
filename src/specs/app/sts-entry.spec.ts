@@ -13,9 +13,14 @@ describe('sts-entry', () => {
         toRemove.push(container);
         return sut as StsEntry;
     };
-    it('should be addable', () => {
+    it('should be a polymer animal', () => {
         var sut = create();
-        debugger;
         expect(sut).toBeDefined();
+        expect(sut.$).toBeDefined();
+    });
+    it('should have a _onKeyPress function', () => {
+        var sut = create();
+        expect(sut._onKeyPress).toBeDefined();
+        expect(typeof(sut._onKeyPress)).toBe('function');   // TODO: pull out .toBeAFunction() matcher
     });
 });

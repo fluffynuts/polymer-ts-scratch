@@ -4,6 +4,7 @@ class StsEntry extends polymer.Base {
     super();
   }
   _onKeyPress(evt): void {
+    console.log('moo!');
     debugger;
   }
 }

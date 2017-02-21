@@ -43,7 +43,7 @@ gulp.task('build:copy-bower_components', function() {
         .pipe(gulp.dest(path.join(buildDir, 'bower_components')));
 });
 
-gulp.task('build:copy', function() {
+gulp.task('build:copy', function(done) {
   runSequence([
     'build:copy-scripts',
     'build:copy-translations',
@@ -51,7 +51,11 @@ gulp.task('build:copy', function() {
     'build:copy-css',
     'build:copy-images',
     'build:copy-bower_components',
-  ]);
+  ], done);
+});
+
+gulp.task('clean-build', function(done) {
+  runSequence('clean', 'build', done);
 });
 
 gulp.task('build', function(done) {

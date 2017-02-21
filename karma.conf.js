@@ -15,13 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'app/scripts/**/*.js', included: true, served: true },
-      { pattern: 'app/**/*.html', included: false, served: true },
-      { pattern: 'app/**/*.js', included: false, served: true },
-      { pattern: 'bower_components/polymer/**/*', included: false, served: true },
-      { pattern: 'bower_components/polymer-ts/**/*', included: false, served: true },
-      { pattern: 'specs/tools/**/*.js', included: true, served: true },
-      { pattern: 'specs/**/*.spec.js', included: true, served: true }
+      { pattern: 'build/**/*.*', included: false, served: true },
+      { pattern: 'build/scripts/**/*.js', included: true, served: true },
+      { pattern: 'build/specs/tools/**/*.js', included: true, served: true },
+      { pattern: 'build/specs/**/*.spec.js', included: true, served: true }
     ],
 
     plugins: [
