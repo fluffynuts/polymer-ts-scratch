@@ -15,15 +15,16 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'build/**/*.*', included: false, served: true },
-      { pattern: 'build/scripts/**/*.js', included: true, served: true },
-      { pattern: 'build/specs/tools/**/*.js', included: true, served: true },
-      { pattern: 'build/specs/**/*.spec.js', included: true, served: true }
+      { pattern: 'build/**/*.*', included: false, served: true, watched: true },
+      { pattern: 'build/scripts/**/*.js', included: true, served: true, watched: true },
+      { pattern: 'build/specs/tools/**/*.js', included: true, served: true, watched: true },
+      { pattern: 'build/specs/**/*.spec.js', included: true, served: true, watched: true }
     ],
 
     plugins: [
         'karma-jasmine',
-        'karma-chrome-launcher'
+        'karma-chrome-launcher',
+        'karma-phantomjs-launcher'
     ],
     // list of files to exclude
     exclude: [
@@ -61,6 +62,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
+    // browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
@@ -69,6 +71,13 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    // force no-caching by the browser
+    customHeaders: [
+      { match: '.*', name: 'Cache-Control', value: 'max-age=0, no-cache, no-store, must-revalidate' },
+      { match: '.*', name: 'Pragma', value: 'no-cache' },
+      { match: '.*', name: 'Expires', value: 'Tue, 11 Mar 1952 04:20:42 GMT' }
+    ]
   })
 }
