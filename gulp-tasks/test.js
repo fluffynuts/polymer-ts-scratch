@@ -15,8 +15,8 @@ gulp.task('quick-test', function() {
   startKarma(true);
 });
 
-gulp.task('test', ['clean-build'], function () {
-  startKarma(true);
+gulp.task('test', ['clean-build'], function (done) {
+  runSequence('quick-test', done);
 });
 
 gulp.task('watch', ['clean-build'], function () {

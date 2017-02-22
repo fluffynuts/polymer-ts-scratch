@@ -24,7 +24,7 @@ gulp.task('build:copy-translations', function() {
 });
 
 gulp.task('build:copy-images', function() {
-    gulp.src([path.join(srcDir, '**/*.png'), '!bower_components/**/*'])
+    return gulp.src([path.join(srcDir, '**/*.png'), '!bower_components/**/*'])
         .pipe(gulp.dest(buildDir));
 });
 
@@ -39,7 +39,7 @@ gulp.task('build:copy-css', function() {
 });
 
 gulp.task('build:copy-bower_components', function() {
-    gulp.src([path.join(srcDir, 'bower_components/**/*')])
+    return gulp.src([path.join(srcDir, 'bower_components/**/*')])
         .pipe(gulp.dest(path.join(buildDir, 'bower_components')));
 });
 
