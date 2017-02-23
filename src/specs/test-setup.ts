@@ -17,7 +17,6 @@ const karma = (window as any).__karma__,
 karma.start = function() { /* do nothing, on purpose */ };
 
 window.document.addEventListener('WebComponentsReady', function() {
-  debugger;
   if (!polymer) {
     throw 'no polymer';
   }

@@ -8,6 +8,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jasmine": "^2.5.43",
+    "@types/jquery": "^2.0.40",
     "@types/polymer-ts": "^0.1.28",
     "babel": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
