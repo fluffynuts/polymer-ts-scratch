@@ -1,4 +1,5 @@
 var fs = require('fs'),
+  os = require('os'),
   path = require('path'),
   del = require('del'),
   log = require('debug')('link-helper'),
@@ -10,6 +11,9 @@ function createJunctionCmd(src, target) {
 }
 
 function canCreateSymlinks() {
+  if (os.platform() !== 'win32') {
+    return true;
+  }
   const
     src = path.resolve('__test_source__'),
     dst = path.resolve('__test_target__'),
@@ -37,6 +41,22 @@ function canCreateSymlinks() {
 function mklink(src, target) {
   src = path.resolve(src);
   target = path.resolve(target);
+  return os.platform() === 'win32' ? mklink_win32(src, target) : mklink_nix(src, target);
+}
+
+function mklink_nix(src, dst) {
+  return new Promise((resolve, reject) => {
+    fs.symlink(src, dst, err => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
+function mklink_win32(src, target) {
   return new Promise((resolve, reject) => {
     const cmd = createJunctionCmd(src, target);
     child_process.exec(cmd, (err) => {

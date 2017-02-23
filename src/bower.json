@@ -1,12 +1,12 @@
 {
-  "name": "simple-ts",
+  "name": "polymer-ts-scratch",
+  "description": "",
+  "main": "index.js",
   "authors": [
     "Davyd McColl <davydm@gmail.com>"
   ],
-  "description": "",
-  "main": "",
-  "license": "MIT",
-  "homepage": "",
+  "license": "ISC",
+  "homepage": "https://github.com/fluffynuts/polymer-ts-scratch",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -15,6 +15,12 @@
     "tests"
   ],
   "dependencies": {
-    "polymer-ts": "^0.1.28"
+    "jsdom": "^9.11.0",
+    "polymer-ts": "^0.1.29",
+    "polymer": "^1.8.0",
+    "webcomponentsjs": "^0.7.24"
+  },
+  "devDependencies": {
+    "jquery": "^3.1.1"
   }
 }

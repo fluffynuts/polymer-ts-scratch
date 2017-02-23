@@ -12,13 +12,12 @@ function htmlImport(path: string): void {
 console.log('adding elements.html');
 htmlImport('/base/build/app/elements.html');
 
-debugger;
 const karma = (window as any).__karma__,
       oldStart = karma.start;
 karma.start = function() { /* do nothing, on purpose */ };
 
 window.document.addEventListener('WebComponentsReady', function() {
-  // debugger;
+  debugger;
   if (!polymer) {
     throw 'no polymer';
   }

@@ -15,11 +15,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'build/scripts/**/*.js', included: true, served: true, watched: true },
+      { pattern: 'build/**/*', included: false, served: true, watched: true },
+      { pattern: 'build/scripts/**/*', included: true, served: true, watched: true },
       { pattern: 'build/specs/test-setup.js', included: true, served: true, watched: true },
-      { pattern: 'build/**/*.*', included: false, served: true, watched: true },
       { pattern: 'build/specs/test-utils/**/*.js', included: true, served: true, watched: true },
-      { pattern: 'build/specs/**/*.spec.js', included: true, served: true, watched: true } 
+      { pattern: 'build/specs/**/*.spec.js', included: true, served: true, watched: true }
     ],
 
     plugins: [

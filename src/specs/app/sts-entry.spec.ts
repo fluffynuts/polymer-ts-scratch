@@ -5,6 +5,16 @@ describe('sts-entry', () => {
         return TestUtils.createComponent<StsEntry>('sts-entry');
     };
 
+    let dom;
+    beforeEach(() => {
+        var iframe = document.createElement('iframe');
+        document.body.appendChild(iframe);
+        iframe.src = '/base/build/';
+    });
+
+    function fetch(path) {
+    }
+
     it('should be a polymer animal', () => {
         debugger;
         var sut = create();
