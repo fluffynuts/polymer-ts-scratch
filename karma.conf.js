@@ -15,11 +15,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'build/**/*', included: false, served: true, watched: true },
       { pattern: 'build/bower_components/jquery/dist/jquery.min.js', included: true, served: true, watched: false },
-      { pattern: 'build/scripts/**/*', included: true, served: true, watched: true },
+      { pattern: 'node_modules/babel-polyfill/dist/polyfill.min.js', included: true, served: true, watched: true },
+      { pattern: 'build/scripts/**/*.js', included: true, served: true, watched: true },
       { pattern: 'build/specs/test-setup.js', included: true, served: true, watched: true },
       { pattern: 'build/specs/test-utils/**/*.js', included: true, served: true, watched: true },
+      { pattern: 'build/specs/lib/**/*.js', included: true, served: true, watched: false },
+      { pattern: 'build/**/*.*', included: false, served: true, watched: true },
       { pattern: 'build/specs/**/*.spec.js', included: true, served: true, watched: true }
     ],
 
