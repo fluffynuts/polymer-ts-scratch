@@ -6,13 +6,13 @@ describe('component:sts-entry', () => {
   };
 
   it('should be a polymer animal', () => {
-    var sut = create();
+    const sut = create();
     expect(sut).toBeDefined();
     expect(sut.$).toBeDefined();
   });
 
   it('should have a _onKeyPress function', () => {
-    var sut = create();
+    const sut = create();
     expect(sut._onKeyPress).toBeDefined();
     expect(typeof (sut._onKeyPress)).toBe('function');   // TODO: pull out .toBeAFunction() matcher
   });

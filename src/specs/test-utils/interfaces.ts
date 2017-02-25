@@ -4,7 +4,7 @@ interface WindowWithJquery extends Window {
 
 interface TemplateInfo {
   window: WindowWithJquery;
-  document: Document,
+  document: Document;
   template$: any;
 }
 

@@ -20,12 +20,12 @@ gulp.task('test-only', 'Tests once without rebuilding', function() {
 });
 
 gulp.task('test', 'Cleans, builds and runs all tests once', ['clean-build'], function (done) {
-  runSequence('test-only', done);
+  runSequence('tslint', 'test-only', done);
 });
 
 const defaultBrowser = 'Chrome';
-gulp.task('watch', 
-  `Watches your project, re-building and running all tests in ${defaultBrowser} when the source changes`, 
+gulp.task('watch',
+  `Watches your project, re-building and running all tests in ${defaultBrowser} when the source changes`,
   [`watch:${defaultBrowser.toLowerCase()}`], function () {
 });
 

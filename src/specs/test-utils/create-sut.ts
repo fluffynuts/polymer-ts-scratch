@@ -1,4 +1,4 @@
-module TestUtils {
+namespace TestUtils {
   let toRemove: HTMLElement[] = [];
   afterEach(() => {
     const remove = toRemove;

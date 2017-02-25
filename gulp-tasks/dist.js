@@ -36,7 +36,7 @@ gulp.task('dist:copy', false, [
 ], function() {
 });
 
-gulp.task('dist', `Builds and Vulcanizes to ${config.distDir}`, ['build', 'dist:copy'], function() {
+gulp.task('dist', `Builds and Vulcanizes to ${config.distDir}`, ['tslint', 'build', 'dist:copy'], function() {
   var isProduction = environment === 'production';
   return gulp.src(path.join(config.buildDir, 'app', 'elements.html'))
           .pipe(polyGulpBuild({ maximumCrush: isProduction }))

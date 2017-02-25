@@ -2,10 +2,10 @@ const
   karmaBaseBuild = '/base/build',
   jqueryPath = [karmaBaseBuild, 'bower_components/jquery/dist/jquery.min.js'].join('/');
 
-module TemplateTestUtils {
+namespace TemplateTestUtils {
   export function findTemplate(nodes: NodeList): Node {
     const checkNext = [];
-    for (var i = 0; i < nodes.length; i++) {
+    for (let i = 0; i < nodes.length; i++) {
       if (nodes[i]['tagName'] === 'TEMPLATE') {
         return nodes[i];
       }
@@ -45,7 +45,7 @@ module TemplateTestUtils {
               result.template$ = _$(_$(template).html());
               resolve(result);
             }
-          })
+          });
         }).fail(err => {
           reject(`failed to get ${jqueryPath}: ${err}`);
         });
@@ -59,11 +59,12 @@ module TemplateTestUtils {
     return findElement(info.template$, tagName);
   }
 
-  function findElement(nodes: HTMLElement[], tagName: string) {
+  function findElement(nodes: HTMLElement[], tag: string) {
     const toCheck = [];
-    tagName = tagName.toUpperCase();
-    for (var i = 0; i < nodes.length; i++) {  // is NOT an array
-      if (nodes[i].tagName === tagName) {
+    tag = tag.toUpperCase();
+
+    for (let i = 0; i < nodes.length; i++) {  // is NOT an array
+      if (nodes[i].tagName === tag) {
         return nodes[i];
       }
       const childNodes = nodes[i].childNodes;
@@ -71,8 +72,9 @@ module TemplateTestUtils {
         toCheck.push.apply(toCheck, Array.prototype.slice.apply(childNodes));
       }
     }
+
     if (toCheck.length) {
-      return findElement(toCheck, tagName);
+      return findElement(toCheck, tag);
     }
   }
 
