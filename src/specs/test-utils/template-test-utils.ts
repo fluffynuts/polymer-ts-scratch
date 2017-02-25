@@ -56,11 +56,24 @@ module TemplateTestUtils {
   }
 
   export function findTemplateElement(info: TemplateInfo, tagName: string) {
-    const tag = tagName.toUpperCase();
-    for (var i = 0; i < info.template$.length; i++) {  // is NOT an array
-      if (info.template$[i].tagName === tag) {
-        return info.template$[i];
+    return findElement(info.template$, tagName);
+  }
+
+  function findElement(nodes: HTMLElement[], tagName: string) {
+    const toCheck = [];
+    tagName = tagName.toUpperCase();
+    for (var i = 0; i < nodes.length; i++) {  // is NOT an array
+      if (nodes[i].tagName === tagName) {
+        return nodes[i];
+      }
+      const childNodes = nodes[i].childNodes;
+      if (childNodes.length) {
+        toCheck.push.apply(toCheck, Array.prototype.slice.apply(childNodes));
       }
     }
+    if (toCheck.length) {
+      return findElement(toCheck, tagName);
+    }
   }
+
 }

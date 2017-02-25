@@ -1,5 +1,5 @@
 'use strict';
-const 
+const
   gulp = require('./modules/gulp-with-help'),
   path = require('path'),
   runSequence = require('run-sequence'),
@@ -12,7 +12,8 @@ const
   { title: 'copy-scripts', glob: 'scripts/**/*', target: 'scripts', dependencies: [ 'import-webcomponentsjs' ] },
   { title: 'copy-images', glob: '**/*.png' },
   { title: 'copy-css', glob: '**/*.css' },
-  { title: 'copy-translations', glob: 'translations/**/*', target: 'translations' }
+  { title: 'copy-translations', glob: 'translations/**/*', target: 'translations' },
+  { title: 'copy-specs-lib', glob: 'specs/lib/**/*.js', target: 'specs/lib' }
 ].forEach(function(item) {
   buildHelpers.generateBuildCopyTask(item.title, item.glob, item.dependencies, item.target);
 });
@@ -34,6 +35,7 @@ gulp.task('build:copy', 'Does all file copies required to get the build folder r
     'build:copy-css',
     'build:copy-images',
     'build:copy-bower_components',
+    'build:copy-specs-lib'
   ], function() {
 });
 
