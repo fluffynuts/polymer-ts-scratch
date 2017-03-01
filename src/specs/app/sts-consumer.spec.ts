@@ -31,6 +31,5 @@ describe('component:sts-consumer', () => {
 
       expect(result).toEqual('beer');
     });
-
   });
 });
