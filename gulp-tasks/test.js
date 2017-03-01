@@ -12,11 +12,20 @@ function startKarma(isSingleRun, browsers) {
   if (browsers && browsers.length) {
     config.browsers = browsers;
   }
+  return new Promise(function(resolve, reject) {
+    new Server(config, function(err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    }).start();
+  });
   new Server(config).start();
 }
 
 gulp.task('test-only', 'Tests once without rebuilding', function() {
-  startKarma(true);
+  return startKarma(true);
 });
 
 gulp.task('test', 'Cleans, builds and runs all tests once', ['clean-build'], function (done) {
