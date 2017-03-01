@@ -1,7 +1,7 @@
 /// <reference path="../test-utils/index.ts" />
 
 describe('component:sts-consumer', () => {
-  describe('template test', () => {
+  describe('template tests', () => {
     let info: TemplateInfo;
     beforeEach(done => {
       if (info) {

@@ -18,7 +18,8 @@
     "jsdom": "^9.11.0",
     "polymer-ts": "^0.1.29",
     "polymer": "^1.8.0",
-    "webcomponentsjs": "^0.7.24"
+    "webcomponentsjs": "^0.7.24",
+    "app-route": "PolymerElements/app-route#^0.9.3"
   },
   "devDependencies": {
     "jquery": "^3.1.1"
