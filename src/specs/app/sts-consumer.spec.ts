@@ -1,4 +1,4 @@
-/// <reference path="../test-utils/index.d.ts" />
+/// <reference path="../test-utils/index.ts" />
 
 describe('component:sts-consumer', () => {
   describe('template tests', () => {

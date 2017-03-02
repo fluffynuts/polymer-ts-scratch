@@ -1,4 +1,4 @@
-/// <reference path="../test-utils/index.d.ts" />
+/// <reference path="../test-utils/index.ts" />
 
 describe('component:sts-entry', () => {
   function create(): StsEntry {
@@ -11,10 +11,10 @@ describe('component:sts-entry', () => {
     expect(sut.$).toBeDefined();
   });
 
-  xit('should have a _onKeyPress function', () => {
+  it('should have a _onKeyPress function', () => {
     // todo: fix this!
     const sut = create();
     expect(sut._onKeyPress).toBeDefined();
-    expect(typeof (sut._onKeyPress)).toBeAFunction();
+    expect(sut._onKeyPress).toBeAFunction();
   });
 });
