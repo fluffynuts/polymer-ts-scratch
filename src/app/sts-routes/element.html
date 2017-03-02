@@ -2,6 +2,9 @@
   <template>
     <app-location use-hash-as-path route="{{route}}"></app-location>
     <app-route route={{route}} pattern="/:view" data="{{routeData}}" tail="{{subRoute}}"></app-route>
+    <!--<iron-lazy-pages selected="{{routeData.view}}" attr-for-selected="data-route">
+      
+    </iron-lazy-pages>-->
     <iron-lazy-pages attr-for-selected="data-route" selected="{{routeData.view}}">
       <template is="iron-lazy-page" data-route="page1">
         <sts-page1 route="{{subRoute}}"></sts-page1>
