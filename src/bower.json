@@ -19,7 +19,8 @@
     "polymer-ts": "^0.1.29",
     "polymer": "^1.8.0",
     "webcomponentsjs": "^0.7.24",
-    "app-route": "PolymerElements/app-route#^0.9.3"
+    "app-route": "PolymerElements/app-route#^0.9.3",
+    "iron-lazy-pages": "^1.4.4"
   },
   "devDependencies": {
     "jquery": "^3.1.1"

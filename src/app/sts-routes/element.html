@@ -2,12 +2,14 @@
   <template>
     <app-location use-hash-as-path route="{{route}}"></app-location>
     <app-route route={{route}} pattern="/:view" data="{{routeData}}" tail="{{subRoute}}"></app-route>
-    <template is="dom-if" if="[[_equals('page1', routeData.view)]]">
-      <sts-page1 route="{{subRoute}}"></sts-page1>
-    </template>
-    <template is="dom-if" if="[[_equals('page2', routeData.view)]]">
-      <sts-page2 route="{{subRoute}}"></sts-page2>
-    </template>    
+    <iron-lazy-pages attr-for-selected="data-route" selected="{{routeData.view}}">
+      <template is="iron-lazy-page" data-route="page1">
+        <sts-page1 route="{{subRoute}}"></sts-page1>
+      </template>
+      <template is="iron-lazy-page" data-route="page2">
+        <sts-page2 route="{{subRoute}}"></sts-page2>
+      </template>
+    </iron-lazy-pages>
   </template>
   <script type="text/javascript" src="element.ts"></script>
 </dom-module>
