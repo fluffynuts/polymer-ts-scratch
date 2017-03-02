@@ -24,12 +24,13 @@ describe('component:sts-consumer', () => {
     });
 
     it('should set the favorite-food attribute on the entry', () => {
-        debugger;
       const
-        entry = TemplateTestUtils.findTemplateElement(info, 'sts-entry'),
-        result = $(entry).attr('favorite-food');
+        entry = TemplateTestUtils.findTemplateElement(info, 'sts-entry');
 
-      expect(result).toEqual('beer');
+        expect(entry).toHaveAttr({
+          name: 'favorite-food',
+          value: 'beer'
+        });
     });
   });
 });

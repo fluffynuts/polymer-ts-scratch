@@ -12,7 +12,6 @@ describe('component:sts-entry', () => {
   });
 
   it('should have a _onKeyPress function', () => {
-    // todo: fix this!
     const sut = create();
     expect(sut._onKeyPress).toBeDefined();
     expect(sut._onKeyPress).toBeAFunction();

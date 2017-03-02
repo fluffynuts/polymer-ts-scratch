@@ -36,44 +36,57 @@ describe('component:sts-routes', () => {
 
       it('should bind location to route variable', () => {
         const
-          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-location'),
-          result = $(appLocation).attr('route');
+          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-location');
 
-        expect(result).toEqual('{{route}}');
+        expect(appLocation).toHaveAttr({
+          name: 'route',
+          value: '{{route}}'
+        });
       });
 
       it('should use hash paths', () => {
         const
-          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-location'),
-          result = $(appLocation).attr('use-hash-as-path');
+          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-location');
 
-        expect(result).toEqual('');
+        expect(appLocation).toHaveAttr({
+          name: 'use-hash-as-path',
+          value: ''
+        });
       });
 
       it('should match view from route', () => {
         const
-          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-route'),
-          route = $(appLocation).attr('route'),
-          pattern = $(appLocation).attr('pattern');
+          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-route');
 
-        expect(route).toEqual('{{route}}');
-        expect(pattern).toEqual('/:view');
+        expect(appLocation).toHaveAttr({
+          name: 'route',
+          value: '{{route}}'
+        });
+
+        expect(appLocation).toHaveAttr({
+          name: 'pattern',
+          value: '/:view'
+        });
       });
 
       it('should bind view value to routeData variable', () => {
         const
-          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-route'),
-          data = $(appLocation).attr('data');
+          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-route');
 
-        expect(data).toEqual('{{routeData}}');
+        expect(appLocation).toHaveAttr({
+          name: 'data',
+          value: '{{routeData}}'
+        });
       });
 
       it('should bind remaining route value to subRoute variable', () => {
         const
-          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-route'),
-          tail = $(appLocation).attr('tail');
+          appLocation = TemplateTestUtils.findTemplateElement(info, 'app-route');
 
-        expect(tail).toEqual('{{subRoute}}');
+        expect(appLocation).toHaveAttr({
+          name: 'tail',
+          value: '{{subRoute}}'
+        });
       });
     });
 
@@ -87,19 +100,22 @@ describe('component:sts-routes', () => {
 
       it('should read selected view from routeData.view variable', () => {
         const
-          viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages'),
-          selected = viewsContainer.getAttribute('selected');
+          viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages');
 
-        // TODO extract Jasmine matcher, something like expect(element).toHaveAttr('selected', '{{routeData.view}}')
-        expect(selected).toEqual('{{routeData.view}}');
+        expect(viewsContainer).toHaveAttr({
+          name: 'selected',
+          value: '{{routeData.view}}'
+        });
       });
 
       it('should match selected value to data-route attribute of views', () => {
         const
-          viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages'),
-          attrForSelected = $(viewsContainer).attr('attr-for-selected');
+          viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages');
 
-        expect(attrForSelected).toEqual('data-route');
+        expect(viewsContainer).toHaveAttr({
+          name: 'attr-for-selected',
+          value: 'data-route'
+        });
       });
     });
 
