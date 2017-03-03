@@ -20,7 +20,7 @@
   function assert(...args) {
     const condition = args[0];
     if (condition) return;
-    const message = (args.slice[1] || ['' + condition]).join(' ');
+    const message = (args.slice(1) || ['' + condition]).join(' ');
     throw message;
   }
 
