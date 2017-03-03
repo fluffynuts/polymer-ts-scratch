@@ -48,8 +48,5 @@
     "run-sequence": "^1.2.2",
     "tslint": "^4.4.2",
     "typescript": "^2.1.6"
-  },
-  "dependencies": {
-    "@types/jquery": "^2.0.40"
   }
 }
