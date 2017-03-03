@@ -129,7 +129,7 @@ describe('component:sts-routes', () => {
       it('should have page1 view', () => {
         const
           viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages'),
-          view = TemplateTestUtils.findChild(viewsContainer, 'template[data-route="page1"]');
+          view = TemplateTestUtils.findChild(info, viewsContainer, 'template[data-route="page1"]');
 
         expect(view).toBeDefined();
         expect(view).toHaveAttr({
@@ -141,7 +141,7 @@ describe('component:sts-routes', () => {
       it('should have page2 view', () => {
         const
           viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages'),
-          view = TemplateTestUtils.findChild(viewsContainer, 'template[data-route="page2"]');
+          view = TemplateTestUtils.findChild(info, viewsContainer, 'template[data-route="page2"]');
 
         expect(view).toBeDefined();
         expect(view).toHaveAttr({
@@ -149,10 +149,38 @@ describe('component:sts-routes', () => {
           value: 'iron-lazy-page'
         });
       });
+
+      describe('page1', () => {
+        it('should have sts-page1 element', () => {
+          const
+            viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages'),
+            view = TemplateTestUtils.findChild(info, viewsContainer, 'template[data-route="page1"]'),
+            element = TemplateTestUtils.findChild(info, view, 'sts-page1');
+
+          expect(element).toBeDefined();
+          expect(element).toHaveAttr({
+            name: 'route',
+            value: '{{subRoute}}'
+          });
+        });
+      });
+
+      describe('page2', () => {
+        it('should have sts-page2 element', () => {
+          const
+            viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages'),
+            view = TemplateTestUtils.findChild(info, viewsContainer, 'template[data-route="page2"]'),
+            element = TemplateTestUtils.findChild(info, view, 'sts-page2');
+
+          expect(element).toBeDefined();
+          expect(element).toHaveAttr({
+            name: 'route',
+            value: '{{subRoute}}'
+          });
+        });
+      });
     });
 
-    // things to think about regarding temlate testing
-    // - how are we going to handle multiple elements? A common scenario would be multiple app-route elements.
-    // - do we care about element order?
+    // TODO pull out factory functions to clear repetition in test setups
   });
 });

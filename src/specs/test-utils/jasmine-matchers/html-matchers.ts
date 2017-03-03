@@ -36,9 +36,9 @@
                 'expected value of attribute [',
                 expected.name,
                 '] to equal [',
-                expected.value.toString(),
+                expected.value,
                 '] but was [',
-                attributeValue.toString(),
+                attributeValue,
                 ']',
               ].join(''));
             });

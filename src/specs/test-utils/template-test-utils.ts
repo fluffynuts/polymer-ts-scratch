@@ -35,6 +35,7 @@ namespace TemplateTestUtils {
               }
               result.window = _window as WindowWithJquery;
               result.document = _window.document;
+              result.jQuery = _$;
               if (err && err.length) {
                 throw `failed to jsdom: ${err}`;
               }
@@ -59,19 +60,33 @@ namespace TemplateTestUtils {
     return findElement(info.template$, tagName);
   }
 
-  export function findChild(parent: Node, selector: string) {
+  export function findChild(info: TemplateInfo, parent: Node, selector: string) {
     const
-      children = $(parent).find(selector);
+      unwrappedParent = unwrapTemplateElement(info, parent),
+      children = unwrappedParent.find(selector);
 
-      if(children.length === 0){
-        return undefined;
-      }
+    if (children.length === 0) {
+      return undefined;
+    }
 
-      if(children.length > 1){
-        throw `found ${children.lenth} children matching ${selector}, this function only expects a single child to match`;
-      }
+    if (children.length > 1) {
+      throw `found ${children.lenth} children matching ${selector}, this function only expects a single child to match`;
+    }
 
-      return children[0];
+    return children[0];
+  }
+
+  function unwrapTemplateElement(info: TemplateInfo, element: Node) {
+    const htmlElement = element as HTMLElement;
+
+    if (htmlElement.tagName === 'TEMPLATE') {
+      const htmlTemplateElement = element as HTMLTemplateElement;
+      const templateContent = info.jQuery(htmlTemplateElement.innerHTML);
+
+      return info.jQuery('<div></div>').append(templateContent);
+    }
+
+    return jQuery(element);
   }
 
   function findElement(nodes: HTMLElement[], tag: string) {

@@ -6,6 +6,7 @@ interface TemplateInfo {
   window: WindowWithJquery;
   document: Document;
   template$: any;
+  jQuery: JQueryStatic;
 }
 
 // largely snarfed from @types/jsdom
