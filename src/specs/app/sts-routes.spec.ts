@@ -11,7 +11,7 @@ describe('component:sts-routes', () => {
     expect(sut.$).toBeDefined();
   });
 
-  describe('template tests', () => {
+  describe('template', () => {
     let info: TemplateInfo;
     beforeEach(done => {
       if (info) {
@@ -115,6 +115,38 @@ describe('component:sts-routes', () => {
         expect(viewsContainer).toHaveAttr({
           name: 'attr-for-selected',
           value: 'data-route'
+        });
+      });
+
+      it('should have two views', () => {
+        const
+          viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages'),
+          actulNumberOfViews = $(viewsContainer).find('template').length;
+
+        expect(actulNumberOfViews).toEqual(2);
+      });
+
+      it('should have page1 view', () => {
+        const
+          viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages'),
+          view = TemplateTestUtils.findChild(viewsContainer, 'template[data-route="page1"]');
+
+        expect(view).toBeDefined();
+        expect(view).toHaveAttr({
+          name: 'is',
+          value: 'iron-lazy-page'
+        });
+      });
+
+      it('should have page2 view', () => {
+        const
+          viewsContainer = TemplateTestUtils.findTemplateElement(info, 'iron-lazy-pages'),
+          view = TemplateTestUtils.findChild(viewsContainer, 'template[data-route="page2"]');
+
+        expect(view).toBeDefined();
+        expect(view).toHaveAttr({
+          name: 'is',
+          value: 'iron-lazy-page'
         });
       });
     });

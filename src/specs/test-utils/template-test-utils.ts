@@ -59,6 +59,21 @@ namespace TemplateTestUtils {
     return findElement(info.template$, tagName);
   }
 
+  export function findChild(parent: Node, selector: string) {
+    const
+      children = $(parent).find(selector);
+
+      if(children.length === 0){
+        return undefined;
+      }
+
+      if(children.length > 1){
+        throw `found ${children.lenth} children matching ${selector}, this function only expects a single child to match`;
+      }
+
+      return children[0];
+  }
+
   function findElement(nodes: HTMLElement[], tag: string) {
     const toCheck = [];
     tag = tag.toUpperCase();
@@ -77,5 +92,4 @@ namespace TemplateTestUtils {
       return findElement(toCheck, tag);
     }
   }
-
 }

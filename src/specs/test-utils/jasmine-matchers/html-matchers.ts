@@ -35,10 +35,11 @@
               assert(attributeValue === expected.value, [
                 'expected value of attribute [',
                 expected.name,
-                '] to equal ',
+                '] to equal [',
                 expected.value.toString(),
-                ' but was ',
+                '] but was [',
                 attributeValue.toString(),
+                ']',
               ].join(''));
             });
           }
