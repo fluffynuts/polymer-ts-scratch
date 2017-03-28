@@ -4,7 +4,7 @@ interface PropertyMatcher {
   type: any;
 }
 declare namespace jasmine {
-  interface Matchers {
+  interface Matchers<T> {
     toHavePolymerProperty(matcher: PropertyMatcher | string): void;
   }
 }

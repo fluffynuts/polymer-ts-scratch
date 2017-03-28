@@ -13,8 +13,7 @@ gulp.task('serve', 'Serves your app with BrowserSync', ['build'], function () {
       baseDir: path.join('.', config.buildDir),
     },
     watchOptions: {
-      usePolling: true,
-      interval: 25000,
+      usePolling: false,
       awaitWriteFinish: true
     }
   });
